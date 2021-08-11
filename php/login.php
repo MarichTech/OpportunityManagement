@@ -18,7 +18,7 @@ session_start();
 		
 			<?php
 			// Connection info. file
-			include 'config/config.php';
+			include '../assets/db/config.php';
 			
 			// Connection variables
 			$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
@@ -29,11 +29,11 @@ session_start();
 			}
 			
 			// data sent from form login.html 
-			$email = $_POST['email']; 
+			$username = $_POST['username']; 
 			$password = $_POST['password'];
 			
 			// Query sent to database
-			$result = mysqli_query($conn, "SELECT Email, Password, UserName, Role, MemberId FROM member WHERE Email = '$email'");
+			$result = mysqli_query($conn, "SELECT Username, Password, UserId FROM user WHERE Username = '$username'");
 			
 			// Variable $row hold the result of the query
 			$row = mysqli_fetch_assoc($result);
@@ -49,19 +49,18 @@ session_start();
 			if (password_verify($_POST['password'], $hash)) {	
 				
 				$_SESSION['loggedin'] = true;
-				$_SESSION['Role'] = $row['Role'];
-				$_SESSION['name'] = $row['UserName'];
-				$_SESSION['MemberId'] = $row['MemberId'];
+				$_SESSION['Username'] = $row['UserName'];
+				$_SESSION['UserId'] = $row['UserId'];
 				$_SESSION['start'] = time();
 				$_SESSION['expire'] = $_SESSION['start'] + (1 * 60) ;
 
-				header('location: index.php');
+				header('location: ../index.html');
 				
 				
 			
 			} else {
 				echo "<div class='alert alert-danger mt-4' role='alert'>Email or Password are incorrects!
-				<p><a href='login.html'><strong>Please try again!</strong></a></p></div>";			
+				<p><a href='html/login.html'><strong>Please try again!</strong></a></p></div>";			
 			}	
 			?>
 		</div>
