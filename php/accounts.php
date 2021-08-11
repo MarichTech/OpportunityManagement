@@ -35,54 +35,51 @@ $result = mysqli_query($conn, $sql); // using mysqli_query
 <?php
     if (isset($_SESSION['loggedin'])) {  
 
-        require_once('../assets/header/main.html');
+        require_once('../assets/header/header3.html');
     
     }
     else {
-      require_once('../assets/header/dash.html');
+      require_once('../assets/header/header4.html');
     }
   //etc and default nav below
 
 ?>
 </div>
 <div class="title">
-    
-<button class="button button1">Create Account</button>
+<form action="../php/addAccount.php" method="POST">
+  <h3>Create Account</h3><br>
+	<input type="text" placeholder="Name" name="name" required>
+	<input type="text" placeholder="Address" name="address" required>
+  <input type="email" placeholder="Email" name="email" required>
+	<input type="text" placeholder="Mobile" name="mobile" required>
+	<button class="button button1" type="submit">Create Account</button>
+</form>
+<br>
+<hr>
 <table>
   <caption>Account Summary</caption>
   <thead>
     <tr>
-      <th scope="col">Account</th>
-      <th scope="col">Due Date</th>
-      <th scope="col">Amount</th>
-      <th scope="col">Period</th>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Email</th>
+      <th scope="col">Mobile</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td data-label="Account">Visa - 3412</td>
-      <td data-label="Due Date">04/01/2016</td>
-      <td data-label="Amount">$1,190</td>
-      <td data-label="Period">03/01/2016 - 03/31/2016</td>
-    </tr>
-    <tr>
-      <td scope="row" data-label="Account">Visa - 6076</td>
-      <td data-label="Due Date">03/01/2016</td>
-      <td data-label="Amount">$2,443</td>
-      <td data-label="Period">02/01/2016 - 02/29/2016</td>
-    </tr>
-    <tr>
-      <td scope="row" data-label="Account">Corporate AMEX</td>
-      <td data-label="Due Date">03/01/2016</td>
-      <td data-label="Amount">$1,181</td>
-      <td data-label="Period">02/01/2016 - 02/29/2016</td>
-    </tr>
-    <tr>
-      <td scope="row" data-label="Acount">Visa - 3412</td>
-      <td data-label="Due Date">02/01/2016</td>
-      <td data-label="Amount">$842</td>
-      <td data-label="Period">01/01/2016 - 01/31/2016</td>
-    </tr>
+  <?php 
+
+  while($res = mysqli_fetch_array($result)) {   
+    
+    echo "<tr>";
+    echo "<td>".$res['Name']."</td>";
+    echo "<td>".$res['Address']."</td>";
+    echo "<td>".$res['Email']."</td>";  
+    echo "<td>".$res['Mobile']."</td>";  
+    echo "<td> <a href=\"BookingApproval.php?id=$res[BookingsId]\" onClick=\"return confirm('Approve Booking?')\">Approve</a></td>";   
+  }
+  ?>
   </tbody>
 </table>
 </div>

@@ -25,11 +25,11 @@ session_start();
 <?php
     if (isset($_SESSION['loggedin'])) {  
 
-        require_once('assets/header/main.html');
+        require_once('assets/header/header1.html');
     
     }
     else {
-      require_once('assets/header/dash.html');
+      require_once('assets/header/header2.html');
     }
   //etc and default nav below
 
