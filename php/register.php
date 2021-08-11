@@ -15,7 +15,7 @@
 
 	<?php
 
-	include 'config/config.php';
+	include '../assets/db/config.php';
 
 	$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
@@ -24,11 +24,11 @@
 		die("Connection failed: " . mysqli_connect_error());
 	}
 	
-	// Query to check if the email already exist
-	$checkEmail = "SELECT * FROM member WHERE Email = '$_POST[email]' ";
+	// Query to check if the username exist
+	$checkUsername = "SELECT * FROM user WHERE Username = '$_POST[username]' ";
 
 	// Variable $result hold the connection data and the query
-	$result = $conn-> query($checkEmail);
+	$result = $conn-> query($checkUsername);
 
 	// Variable $count hold the result of the query
 	$count = mysqli_num_rows($result);
@@ -36,31 +36,28 @@
 	// If count == 1 that means the email is already on the database
 	if ($count == 1) {
 	echo "<div class='alert alert-warning mt-4' role='alert'>
-					<p>That email is already in our database.</p>
+					<p>That Username already exist. Login Instead</p>
 					<p><a href='login.html'>Please login here</a></p>
 				</div>";
 	} else {	
 	
 	/*
-	If the email don't exist, the data from the form is sended to the
+	If the username don't exist, the data from the form is sent to the
 	database and the account is created
 	*/
-	$fname = $_POST['fname'];
-	$sname = $_POST['sname'];
+	
 	$username = $_POST['username'];
-	$email = $_POST['email'];
-	$phonenumber = $_POST['phonenumber'];
-	$pass = $_POST['password'];
+	$password = $_POST['password'];
 	
 	// The password_hash() function convert the password in a hash before send it to the database
-	$passHash = password_hash($pass, PASSWORD_DEFAULT);
+	$passwordHash = password_hash($password, PASSWORD_DEFAULT);
 	
-	// Query to send Name, Email and Password hash to the database
-	$query = "INSERT INTO member (FName, SName,UserName, Email, PHNumber, Password) VALUES ('$fname','$sname','$username', '$email','$phonenumber', '$passHash')";
+	// Query to save username and Password hash to the database
+	$query = "INSERT INTO user (Username, Password) VALUES ('$username', '$passwordHash')";
 
 	if (mysqli_query($conn, $query)) {
 		echo "<div class='alert alert-success mt-4' role='alert'><h3>Your account has been created.</h3>
-		<a class='btn btn-outline-primary' href='login.html' role='button'>Login</a></div>";		
+		<a class='btn btn-outline-primary' href='../html/login.html' role='button'>Login</a></div>";		
 		} else {
 			echo "Error: " . $query . "<br>" . mysqli_error($conn);
 		}	
