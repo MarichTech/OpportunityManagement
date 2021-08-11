@@ -77,7 +77,8 @@ $result = mysqli_query($conn, $sql); // using mysqli_query
     echo "<td>".$res['Address']."</td>";
     echo "<td>".$res['Email']."</td>";  
     echo "<td>".$res['Mobile']."</td>";  
-    echo "<td> <a href=\"BookingApproval.php?id=$res[BookingsId]\" onClick=\"return confirm('Approve Booking?')\">Approve</a></td>";   
+    echo "<td> <a href=\"editAccount.php?id=$res[AccountId]\" onClick=\"return confirm('Do you want to Update this Account?')\">Update</a> 
+    | <a href=\"deleteAccount.php?id=$res[AccountId]\" onClick=\"return confirm('Are you sure you want to delete this Account?')\">Delete</a></td>";   
   }
   ?>
   </tbody>
