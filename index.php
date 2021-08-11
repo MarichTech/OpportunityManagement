@@ -29,7 +29,7 @@ session_start();
     
     }
     else {
-     //Dont show any menu
+      require_once('assets/header/dash.html');
     }
   //etc and default nav below
 
