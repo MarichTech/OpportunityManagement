@@ -47,7 +47,7 @@ $result = mysqli_query($conn, $sql); // using mysqli_query
 </div>
 <div class="title">
 <form action="../php/addAccount.php" method="POST">
-  <h3>Create Account</h3><br>
+  <h3>Create a new Account</h3><br>
 	<input type="text" placeholder="Name" name="name" required>
 	<input type="text" placeholder="Address" name="address" required>
   <input type="email" placeholder="Email" name="email" required>
@@ -57,7 +57,7 @@ $result = mysqli_query($conn, $sql); // using mysqli_query
 <br>
 <hr>
 <table>
-  <caption>Account Summary</caption>
+  <caption>Your Accounts</caption>
   <thead>
     <tr>
       <th scope="col">Name</th>

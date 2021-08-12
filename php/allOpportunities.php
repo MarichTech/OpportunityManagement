@@ -9,15 +9,9 @@ $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
     die("Connection failed: " . mysqli_connect_error());
   }
  
-//getting id from url
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    $_SESSION['AccountId'] = $id;
-     
-}
 
-    $AccountId = $_SESSION['AccountId'];
-    $sql = "SELECT * FROM opportunities WHERE AccountId = $AccountId  ORDER BY OpportunityId DESC";
+    $UserId = $_SESSION['UserId'];
+    $sql = "SELECT * FROM opportunities WHERE UserId = $UserId  ORDER BY OpportunityId DESC";
     $result = mysqli_query($conn, $sql); // using mysqli_query 
 
 ?>
@@ -55,18 +49,9 @@ if (isset($_GET['id'])) {
 ?>
 </div>
 <div class="title">
-<form action="../php/addOpportunity.php" method="POST">
-  <h3>Create a new Opportunity</h3><br>
 
-	<input type="text" placeholder="Name" name="name" required>
-	<input type="text" placeholder="Amount" name="amount" required>
-	<input type="text" placeholder="Stage" name="stage" required>
-	<button class="button button1" name="add" type="submit">Add</button>
-</form>
-<br>
-<hr>
 <table>
-  <caption>Opportunities</caption>
+  <caption>Your Opportunities</caption>
   <thead>
     <tr>
       <th scope="col">Name</th>
@@ -84,9 +69,7 @@ if (isset($_GET['id'])) {
     echo "<td>".$res['Name']."</td>";
     echo "<td>".$res['Amount']."</td>";
     echo "<td>".$res['Stage']."</td>";  
-    echo "<td> <a href=\"editOpportunity.php?id=$res[OpportunityId]\" onClick=\"return confirm('Do you want to Update this Opportunity?')\">Update</a> 
-    | <a href=\"deleteOpportunity.php?id=$res[OpportunityId]\" onClick=\"return confirm('Are you sure you want to delete this Opportunity?')\">Delete</a></td>";   
-  }
+    }
   ?>
   </tbody>
 </table>
