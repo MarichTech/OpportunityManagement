@@ -12,7 +12,7 @@ $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
     $UserId = $_SESSION['UserId'];
     $sql = "SELECT * FROM opportunities WHERE UserId = $UserId  ORDER BY OpportunityId DESC";
-    $result = mysqli_query($conn, $sql); // using mysqli_query 
+    $result = mysqli_query($conn, $sql); 
 
 ?>
 
@@ -44,7 +44,6 @@ $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
     else {
       require_once('../assets/header/header4.html');
     }
-  //etc and default nav below
 
 ?>
 </div>

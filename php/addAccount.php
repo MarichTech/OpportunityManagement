@@ -19,7 +19,7 @@ $result = $conn-> query($checkName);
 // Variable $count hold the result of the query
 $count = mysqli_num_rows($result);
 
-// If count == 1 that means the email is already on the database
+// If count == 1 that means the account is already on the database
 if ($count == 1) {
 echo "<div class='alert alert-warning mt-4' role='alert'>
         <p>That Account already exist.</p>
@@ -27,7 +27,7 @@ echo "<div class='alert alert-warning mt-4' role='alert'>
 } else {	
 
 /*
-If the username don't exist, the data from the form is sent to the
+If the account don't exist, the data from the form is sent to the
 database and the account is created
 */
 
@@ -38,7 +38,7 @@ $address = $_POST['address'];
 $UserId = $_SESSION['UserId'];
 
 
-// Query to save username and Password hash to the database
+// Query to save account to the database
 $query = "INSERT INTO accounts ( UserId,Name, Email, Mobile, Address) VALUES ('$UserId', '$name', '$email', '$mobile', '$address')";
 
 if (mysqli_query($conn, $query)) {

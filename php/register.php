@@ -33,7 +33,7 @@
 	// Variable $count hold the result of the query
 	$count = mysqli_num_rows($result);
 
-	// If count == 1 that means the email is already on the database
+	// If count == 1 that means the username is already on the database
 	if ($count == 1) {
 	echo "<div class='alert alert-warning mt-4' role='alert'>
 					<p>That Username already exist. Login Instead</p>

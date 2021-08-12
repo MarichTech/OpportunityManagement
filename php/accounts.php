@@ -41,7 +41,6 @@ $result = mysqli_query($conn, $sql); // using mysqli_query
     else {
       require_once('../assets/header/header4.html');
     }
-  //etc and default nav below
 
 ?>
 </div>

@@ -50,7 +50,6 @@ if (isset($_GET['id'])) {
     else {
       require_once('../assets/header/header4.html');
     }
-  //etc and default nav below
 
 ?>
 </div>

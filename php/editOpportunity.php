@@ -24,7 +24,7 @@ if(isset($_POST['update']))
 		//updating the table
 		$result = mysqli_query($conn, "UPDATE opportunities SET Name='$name',Amount='$amount',Stage='$stage' WHERE OpportunityId=$id");
 		
-		//redirectig to the opportunities page
+		//redirecting to the opportunities page
 		header("Location: opportunities.php");
 	
 }
@@ -71,7 +71,6 @@ while($res = mysqli_fetch_array($result))
     else {
       require_once('../assets/header/header4.html');
     }
-  //etc and default nav below
 
 ?>
 </div>

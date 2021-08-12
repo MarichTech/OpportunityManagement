@@ -25,7 +25,7 @@ if(isset($_POST['update']))
 		//updating the table
 		$result = mysqli_query($conn, "UPDATE accounts SET Name='$name',Address='$address',Email='$email',Mobile='$mobile' WHERE AccountId=$id");
 		
-		//redirectig to the display page. In our case, it is mybookings.php
+		//redirectig to the display page. 
 		header("Location: accounts.php");
 	
 }
@@ -73,7 +73,6 @@ while($res = mysqli_fetch_array($result))
     else {
       require_once('../assets/header/header4.html');
     }
-  //etc and default nav below
 
 ?>
 </div>

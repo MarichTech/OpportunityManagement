@@ -23,7 +23,7 @@ $result = $conn-> query($checkOpportunityName);
 // Variable $count hold the result of the query
 $count = mysqli_num_rows($result);
 
-// If count == 1 that means the email is already on the database
+// If count == 1 that means the opportunity is already on the database
 if ($count == 1) {
 echo "<div class='alert alert-warning mt-4' role='alert'>
         <p>That Account already exist.</p>
@@ -31,8 +31,8 @@ echo "<div class='alert alert-warning mt-4' role='alert'>
 } else {	
 
 /*
-If the username don't exist, the data from the form is sent to the
-database and the account is created
+If the opportunity don't exist, the data from the form is sent to the
+database and the opportunity is created
 */
 
 $name = $_POST['name'];
@@ -42,7 +42,7 @@ $UserId = $_SESSION['UserId'];
 $AccountId = $_SESSION['AccountId'];
 
 
-// Query to save username and Password hash to the database
+// Query to save opportunity to the database
 $query = "INSERT INTO opportunities ( UserId,Name, Amount, Stage, AccountId) VALUES ('$UserId', '$name', '$amount', '$stage', '$AccountId')";
 
 if (mysqli_query($conn, $query)) {

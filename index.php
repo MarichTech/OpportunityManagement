@@ -24,14 +24,14 @@ session_start();
 <div>
 <?php
     if (isset($_SESSION['loggedin'])) {  
-
+     //Display this header when user has logged in
         require_once('assets/header/header1.html');
     
     }
     else {
+      //Display this header when user is not logged in
       require_once('assets/header/header2.html');
     }
-  //etc and default nav below
 
 ?>
 </div>

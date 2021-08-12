@@ -17,7 +17,7 @@ $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
   
   $sql = "DELETE FROM opportunities WHERE OpportunityId=$id";
         $result = mysqli_query($conn, $sql); // using mysqli_query 
-        //redirecting to the display page (index.php in our case)
+        //redirecting to the display page 
         header("Location: opportunities.php");
 
 
