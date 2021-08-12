@@ -8,56 +8,20 @@ $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
   if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
   }
-  $UserId = $_SESSION['UserId'];
-$sql = "SELECT * FROM opportunities WHERE UserId = $UserId  ORDER BY OpportunityId DESC";
-$result = mysqli_query($conn, $sql); // using mysqli_query 
-
-if(isset($_POST['add']))
-{	
-////////////Add Opportunity to database
-// Query to check if the opportunity exist and belongs to this user
-$checkOpportunityName = "SELECT * FROM opportunities WHERE Name = '$_POST[name]' AND  UserId = $UserId";
-
-// Variable $result hold the connection data and the query
-$result = $conn-> query($checkOpportunityName);
-
-// Variable $count hold the result of the query
-$count = mysqli_num_rows($result);
-
-// If count == 1 that means the email is already on the database
-if ($count == 1) {
-echo "<div class='alert alert-warning mt-4' role='alert'>
-        <p>That Account already exist.</p>
-      </div>";
-} else {	
-
-/*
-If the username don't exist, the data from the form is sent to the
-database and the account is created
-*/
-
-$name = $_POST['name'];
-$amount = $_POST['amount'];
-$stage = $_POST['stage'];
-$UserId = $_SESSION['UserId'];
-$AccountId = $_SESSION['UserId'];
-
-
-// Query to save username and Password hash to the database
-$query = "INSERT INTO opportunities ( UserId,Name, Amount, Stage, AccountId) VALUES ('$UserId', '$name', '$amount', '$stage', '$AccountId')";
-
-if (mysqli_query($conn, $query)) {
-  echo "<div class='alert alert-success mt-4' role='alert'><h3>Your opportunity has been created.</h3></div>";
-  header('location: opportunities.php');		
-  } else {
-    echo "Error: " . $query . "<br>" . mysqli_error($conn);
-  }	
-}	
-mysqli_close($conn);
-
+ 
+//getting id from url
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $_SESSION['AccountId'] = $id;
+     
 }
 
+    $AccountId = $_SESSION['AccountId'];
+    $sql = "SELECT * FROM opportunities WHERE AccountId = $AccountId  ORDER BY OpportunityId DESC";
+    $result = mysqli_query($conn, $sql); // using mysqli_query 
+
 ?>
+
 
 
 <!DOCTYPE html>
@@ -91,7 +55,7 @@ mysqli_close($conn);
 ?>
 </div>
 <div class="title">
-<form action="opportunities.php" method="POST">
+<form action="../php/addOpportunity.php" method="POST">
   <h3>Create Opportunity</h3><br>
 
 	<input type="text" placeholder="Name" name="name" required>
@@ -120,8 +84,8 @@ mysqli_close($conn);
     echo "<td>".$res['Name']."</td>";
     echo "<td>".$res['Amount']."</td>";
     echo "<td>".$res['Stage']."</td>";  
-    echo "<td> <a href=\"editAccount.php?id=$res[AccountId]\" onClick=\"return confirm('Do you want to Update this Account?')\">Update</a> 
-    | <a href=\"deleteAccount.php?id=$res[AccountId]\" onClick=\"return confirm('Are you sure you want to delete this Account?')\">Delete</a></td>";   
+    echo "<td> <a href=\"editOpportunity.php?id=$res[OpportunityId]\" onClick=\"return confirm('Do you want to Update this Opportunity?')\">Update</a> 
+    | <a href=\"deleteOpportunity.php?id=$res[OpportunityId]\" onClick=\"return confirm('Are you sure you want to delete this Opportunity?')\">Delete</a></td>";   
   }
   ?>
   </tbody>
