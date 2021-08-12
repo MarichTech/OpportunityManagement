@@ -78,7 +78,9 @@ $result = mysqli_query($conn, $sql); // using mysqli_query
     echo "<td>".$res['Email']."</td>";  
     echo "<td>".$res['Mobile']."</td>";  
     echo "<td> <a href=\"editAccount.php?id=$res[AccountId]\" onClick=\"return confirm('Do you want to Update this Account?')\">Update</a> 
-    | <a href=\"deleteAccount.php?id=$res[AccountId]\" onClick=\"return confirm('Are you sure you want to delete this Account?')\">Delete</a></td>";   
+    | <a href=\"deleteAccount.php?id=$res[AccountId]\" onClick=\"return confirm('Are you sure you want to delete this Account?')\">Delete</a>
+    | <a href=\"opportunities.php?id=$res[AccountId]\" onClick=\"return confirm('Do you want view opportunities to this Account?')\">Opportunity</a>
+    </td>";   
   }
   ?>
   </tbody>
