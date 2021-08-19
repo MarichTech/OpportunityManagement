@@ -37,7 +37,7 @@
 	if ($count == 1) {
 	echo "<div class='alert alert-warning mt-4' role='alert'>
 					<p>That Username already exist. Login Instead</p>
-					<p><a href='login.html'>Please login here</a></p>
+					<p><a href='../html/login.html'>Please login here</a></p>
 				</div>";
 	} else {	
 	

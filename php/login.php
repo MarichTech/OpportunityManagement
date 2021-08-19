@@ -60,7 +60,7 @@ session_start();
 			
 			} else {
 				echo "<div class='alert alert-danger mt-4' role='alert'>Email or Password are incorrects!
-				<p><a href='html/login.html'><strong>Please try again!</strong></a></p></div>";			
+				<p><a href='../html/login.html'><strong>Please try again!</strong></a></p></div>";			
 			}	
 			?>
 		</div>
